@@ -20,6 +20,8 @@ jobs:
     test_flask_app:
         working_directory: ~/project
         docker:
+            - environment:
+                PYTHONPATH: ./packages/flask_app
             - image: circleci/python:3.7.2
         steps:
             - checkout
@@ -30,7 +32,6 @@ jobs:
                     . venv/bin/activate
                     pip install --upgrade pip
                     pip install -r packages/flask_app/requirements.txt
-                    echo 'export PYTHONPATH="/home/circleci/project/packages/flask_app:${PYTHONPATH}"' >> $BASH_ENV
                     py.test -vv packages/flask_app/tests
 
     train_and_upload_regression_model:
