@@ -1,5 +1,6 @@
 # API
 flask==1.1.2
+marshmallow==2.17.0
 
 # Local regression_model package
 -e "/media/mosaab/Volume/Projects/Packages/Deployment_Project/packages/regression_model"
