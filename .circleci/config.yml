@@ -21,8 +21,6 @@ jobs:
         working_directory: ~/project
         docker:
             - image: circleci/python:3.7.2
-            - environment:
-                PYTHONPATH: ./packages/flask_app
         steps:
             - checkout
             - run:
@@ -32,7 +30,7 @@ jobs:
                     . venv/bin/activate
                     pip install --upgrade pip
                     pip install -r packages/flask_app/requirements.txt
-                    py.test -vv packages/flask_app/tests
+                    PYTHONPATH=./packages/flask_app py.test -vv packages/flask_app/tests
 
     train_and_upload_regression_model:
         working_directory: ~/project
