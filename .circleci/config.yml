@@ -30,7 +30,7 @@ jobs:
                     . venv/bin/activate
                     pip install --upgrade pip
                     pip install -r packages/flask_app/requirements.txt
-                    echo 'export PYTHONPATH="~/project/packages/flask_app:${PYTHONPATH}"' >> $BASH_ENV
+                    echo 'export PYTHONPATH="/home/circleci/project/packages/flask_app:${PYTHONPATH}"' >> $BASH_ENV
                     py.test -vv packages/flask_app/tests
 
     train_and_upload_regression_model:
