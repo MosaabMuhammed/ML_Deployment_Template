@@ -17,7 +17,7 @@ jobs:
                     ./scripts/fetch_kaggle_dataset.sh
                     py.test -vv packages/regression_model/tests
 
-    test_ml_api:
+    test_flask_app:
         working_directory: ~/project
         docker:
             - image: circleci/python:3.7.2
@@ -29,8 +29,8 @@ jobs:
                     virtualenv venv
                     . venv/bin/activate
                     pip install --upgrade pip
-                    pip install -r packages/ml_api/requirements.txt
-                    py.test -vv packages/ml_api/tests
+                    pip install -r packages/flask_app/requirements.txt
+                    py.test -vv packages/flask_app/tests
 
     train_and_upload_regression_model:
         working_directory: ~/project
@@ -57,8 +57,8 @@ workflows:
     test-all:
         jobs:
             - test_regression_model
-            - test_ml_api
+            - test_flask_app
             - train_and_upload_regression_model
-            - test_ml_api:
+            - test_flask_app:
                 requires:
                     - train_and_upload_regression_model
